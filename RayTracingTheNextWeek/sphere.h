@@ -4,6 +4,7 @@
 
 #include "hittable.h"
 #include "vec3.h"
+#include "aabb.h"
 
 class sphere : public hittable {
 public:
@@ -14,42 +15,20 @@ public:
     virtual bool hit(
             const ray &r, double t_min, double t_max, hit_record &rec) const override;
 
+    // 正方体AABB包围盒 包围 球
+    virtual bool bounding_box(double time0, double time1, aabb &output_box) const {
+        output_box = aabb(center - vec3(radius, radius, radius), center + vec3(radius, radius, radius));
+        return true;
+    }
+
 public:
     point3 center;
     double radius;
     shared_ptr<material> mat_ptr;
 };
 
-// 另一种写法
-/*
-bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
-        vec3 oc = r.orgin() - center;
-        float a = oc.dot(r.direction(), r.direction());
-        float b = 2.0 * oc.dot(oc, r.direction());
-        float c = oc.dot(oc, oc) - radius*radius;
-        float discriminant = b*b - 4*a*c;
 
-        if (discriminant > 0) {
-            float temp = (-b - sqrt(discriminant)) / (2.0*a);
-            if (temp < t_max && temp > t_min) {
-                rec.t = temp;
-                rec.p = r.point_at_parameter(rec.t);
-                rec.normal = (rec.p - center) / radius;
-                return true;
-            }
-            temp = (-b + sqrt(discriminant)) / (2.0*a);
-            if (temp < t_max && temp > t_min) {
-                rec.t = temp;
-                rec.p = r.point_at_parameter(rec.t);
-                rec.normal = (rec.p - center) / radius;
-                return true;
-            }
-        }
-//判断小根和大根是否在范围内。首先判断小根是否在范围内。是：保存相关信息，然后直接返回；否，判断大根是否在范围内。也就是优先选小根，小根不行再考虑大根
-return false;
-}
- *
- * */
+// sphere与光线求交判定
 bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) const {
     // 求交
     vec3 oc = r.origin() - center;
