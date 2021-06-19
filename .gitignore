@@ -1,0 +1,41 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Directories
+/RayTracingTheNextWeek/cmake-build-debug/CMakeFiles
+/RayTracingTheNextWeek/cmake-build-debug/Testing
+/RayTracingTheNextWeek/cmake-build-debug/Makefile
+/RayTracingTheNextWeek/cmake-build-debug/cmake_install.cmake
+/RayTracingTheNextWeek/cmake-build-debug/CMakeCache.txt
+/RayTracingTheNextWeek/cmake-build-debug/RayTracingOneWeek.cbp
+/.idea
