@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/aabb.h">
+			<Option target="RayTracingTheNextWeek"/>
+		</Unit>
+		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/bvh.h">
+			<Option target="RayTracingTheNextWeek"/>
+		</Unit>
 		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/camera.h">
 			<Option target="RayTracingTheNextWeek"/>
 		</Unit>
@@ -99,6 +105,9 @@
 			<Option target="RayTracingTheNextWeek"/>
 		</Unit>
 		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/material.h">
+			<Option target="RayTracingTheNextWeek"/>
+		</Unit>
+		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/moving_sphere.h">
 			<Option target="RayTracingTheNextWeek"/>
 		</Unit>
 		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/ray.h">

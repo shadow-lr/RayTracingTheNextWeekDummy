@@ -2,6 +2,8 @@
 #include "vec3.h"
 #include "rtweekend.h"
 
+#include "moving_sphere.h"
+
 #include "color.h"
 #include "hittable_list.h"
 #include "sphere.h"
@@ -24,25 +26,6 @@ const int max_depth = 50;
 const int samples_per_pixel = 60;
 
 // World
-//hittable_list world;
-
-// Camera old before chapter 11
-//camera cam(90.0, aspect_ratio);
-
-// Camera new after chapter 11
-//camera cam(point3(-2, 2, 1), point3(0, 0, -1), vec3(0, 1, 0), 90, aspect_ratio);
-
-//camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 20, aspect_ratio);
-
-// Camera new after chapter 12
-//point3 lookfrom(3, 3, 2);
-//point3 lookat(0, 0, -1);
-//vec3 vup(0, 1, 0);
-//auto dist_to_focus = (lookfrom - lookat).length();
-//auto aperture = 2.0;
-//camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
-
-// World
 hittable_list world = random_scene();
 
 // Camera
@@ -52,7 +35,7 @@ vec3 vup(0, 1, 0);
 auto dist_to_focus = 10.0;
 auto aperture = 0.1;
 
-camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
+camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus, 0.0, 1.0);
 
 std::vector<std::vector<color>> color_table(image_height + 1, std::vector<color>(image_width + 1));
 
@@ -112,7 +95,8 @@ hittable_list random_scene() {
                     // diffuse
                     auto albedo = color::random() * color::random();
                     sphere_material = make_shared<lambertian>(albedo);
-                    world.add(make_shared<sphere>(center, 0.2, sphere_material));
+                    auto center2 = center + vec3(0, random_double(0, 0.5), 0);
+                    world.add(make_shared<moving_sphere>(center, center2, 0.0, 1.0, 0.2, sphere_material));
                 } else if (choose_mat < 0.95) {
                     // metal
                     auto albedo = color::random(0.5, 1);
