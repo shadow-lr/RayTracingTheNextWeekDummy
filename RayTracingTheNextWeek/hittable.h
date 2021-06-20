@@ -14,6 +14,8 @@ struct hit_record {
     vec3 normal;
     shared_ptr<material> mat_ptr;
     double t;
+    // 物体命中点的U,V表面坐标
+    double u, v;
     bool front_face;
 
     // 如果射线和法线的方向相同，则该射线在对象内部，如果射线和法线的方向相反，则该射线在对象之外
