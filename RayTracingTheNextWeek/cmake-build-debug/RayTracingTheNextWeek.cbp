@@ -122,6 +122,9 @@
 		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/sphere.h">
 			<Option target="RayTracingTheNextWeek"/>
 		</Unit>
+		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/texture.h">
+			<Option target="RayTracingTheNextWeek"/>
+		</Unit>
 		<Unit filename="D:/repos/RayTracingTheNextWeek/RayTracingTheNextWeek/vec3.h">
 			<Option target="RayTracingTheNextWeek"/>
 		</Unit>

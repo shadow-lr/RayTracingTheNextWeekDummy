@@ -16,9 +16,15 @@ public:
             const ray &r, double t_min, double t_max, hit_record &rec) const override;
 
     // 正方体AABB包围盒 包围 球
-    virtual bool bounding_box(double time0, double time1, aabb &output_box) const {
-        output_box = aabb(center - vec3(radius, radius, radius), center + vec3(radius, radius, radius));
-        return true;
+    virtual bool bounding_box(double time0, double time1, aabb &output_box) const;
+
+    // 更新 u v的值
+    static void get_sphere_uv(const point3 &p, double &u, double &v) {
+        auto theta = acos(-p.y());
+        auto phi = atan2(-p.z(), p.x()) + pi;
+
+        u = phi / (2 * pi);
+        v = theta / pi;
     }
 
 public:
@@ -57,12 +63,17 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) cons
     // 中心点到原上点的向量 再 除以 半径（向量的长度）
     rec.normal = (rec.p - center) / radius;
 
-    rec.mat_ptr = mat_ptr;
-
     // 表面法线方向一定与入射相反的
     vec3 outward_normal = (rec.p - center) / radius;
     rec.set_face_normal(r, outward_normal);
+    rec.mat_ptr = mat_ptr;
 
+    get_sphere_uv(outward_normal, rec.u, rec.v);
+    return true;
+}
+
+bool sphere::bounding_box(double time0, double time1, aabb &output_box) const {
+    output_box = aabb(center - vec3(radius, radius, radius), center + vec3(radius, radius, radius));
     return true;
 }
 
